@@ -157,6 +157,9 @@ class Plugin_Name {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+		$this->loader->add_action( 'init', $plugin_admin, 'create_plugin_name_post_type' );
+		$this->loader->add_action( 'init', $plugin_admin, 'plugin_name_add_post_type_to_rest' );
+
 	}
 
 	/**
