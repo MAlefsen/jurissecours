@@ -22,7 +22,6 @@
  </head>
 
  <body <?php body_class(); ?>>
-   <input id="nonce" type="hidden" value="<?php echo wp_create_nonce( 'wp_rest' ); ?>" />
    <input id="home_url" type="hidden" value="<?php echo get_home_url(); ?>" />
    <div id="root"></div>
  </body>

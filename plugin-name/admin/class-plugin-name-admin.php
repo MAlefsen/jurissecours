@@ -100,49 +100,71 @@ class Plugin_Name_Admin {
 
 	}
 
+
+	/**
+	 * Create custom CRA page if not exists
+	 *
+	 * @since    1.0.0
+	 */
+	 function plugin_name_create_cra_page() {
+			$my_page = get_option('plugin_name_page');
+			if (!$my_page||FALSE === get_post_status( $my_page )) {
+			    // Create post/page object
+			    $my_new_page = array(
+			        'post_title' => 'CRA App Page',
+			        'post_content' => '',
+			        'post_status' => 'publish',
+							'post_type' => 'page'
+			    );
+			    // Insert the post into the database
+			    $my_page = wp_insert_post( $my_new_page );
+			    update_option('plugin_name_page',$my_page);
+			}
+	 }
+
 	/**
 	 * An example post type that you can remove.
 	 *
 	 * @since    1.0.0
 	 */
- public function create_plugin_name_post_type() {
-		 register_post_type( 'plugin-name-post-type',
-				 array(
-						 'labels' => array(
-								 'name' => 'Custom Post Type',
-								 'menu_name' => 'Custom',
-								 'singular_name' => 'Custom',
-								 'add_new' => 'Add New',
-								 'add_new_item' => 'Add New Custom',
-								 'edit' => 'Edit',
-								 'edit_item' => 'Edit Custom',
-								 'new_item' => 'New Custom',
-								 'view' => 'View',
-								 'view_item' => 'View Custom',
-								 'search_items' => 'Search Custom',
-								 'not_found' => 'No Custom found',
-								 'not_found_in_trash' => 'No Custom found in Trash',
-								 'parent' => 'Parent Custom'
-						 ),
-						 'public' => true,
-						 'show_in_rest' => true,
-						 'menu_position' => 15,
-						 'supports' => array( 'title' , 'editor', 'custom-fields', 'thumbnail', 'excerpt'),
-						 'taxonomies' => array( '' ),
-						 'menu_icon' => 'dashicons-welcome-learn-more',
-						 'has_archive' => true
-				 )
-		 );
- }
+ // public function create_plugin_name_post_type() {
+	// 	 register_post_type( 'plugin-name-post-type',
+	// 			 array(
+	// 					 'labels' => array(
+	// 							 'name' => 'Custom Post Type',
+	// 							 'menu_name' => 'Custom',
+	// 							 'singular_name' => 'Custom',
+	// 							 'add_new' => 'Add New',
+	// 							 'add_new_item' => 'Add New Custom',
+	// 							 'edit' => 'Edit',
+	// 							 'edit_item' => 'Edit Custom',
+	// 							 'new_item' => 'New Custom',
+	// 							 'view' => 'View',
+	// 							 'view_item' => 'View Custom',
+	// 							 'search_items' => 'Search Custom',
+	// 							 'not_found' => 'No Custom found',
+	// 							 'not_found_in_trash' => 'No Custom found in Trash',
+	// 							 'parent' => 'Parent Custom'
+	// 					 ),
+	// 					 'public' => true,
+	// 					 'show_in_rest' => true,
+	// 					 'menu_position' => 15,
+	// 					 'supports' => array( 'title' , 'editor', 'custom-fields', 'thumbnail', 'excerpt'),
+	// 					 'taxonomies' => array( '' ),
+	// 					 'menu_icon' => 'dashicons-welcome-learn-more',
+	// 					 'has_archive' => true
+	// 			 )
+	// 	 );
+ // }
 
  	/**
  	 * Add post type to rest
  	 *
  	 * @since    1.0.0
  	 */
- 	function plugin_name_add_post_type_to_rest() {
- 		global $wp_post_types;
- 		$wp_post_types['plugin-name-post-type']->show_in_rest = true;
- 	}
+ 	// function plugin_name_add_post_type_to_rest() {
+ 	// 	global $wp_post_types;
+ 	// 	$wp_post_types['plugin-name-post-type']->show_in_rest = true;
+ 	// }
 
 }
