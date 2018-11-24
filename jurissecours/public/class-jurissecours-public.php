@@ -6,8 +6,8 @@
  * @link       http://example.com
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/public
+ * @package    Jurissecours
+ * @subpackage Jurissecours/public
  */
 
 /**
@@ -16,20 +16,20 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/public
+ * @package    Jurissecours
+ * @subpackage Jurissecours/public
  * @author     Your Name <email@example.com>
  */
-class Plugin_Name_Public {
+class Jurissecours_Public {
 
 	/**
 	 * The ID of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string    $jurissecours    The ID of this plugin.
 	 */
-	private $plugin_name;
+	private $jurissecours;
 
 	/**
 	 * The version of this plugin.
@@ -44,12 +44,12 @@ class Plugin_Name_Public {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
+	 * @param      string    $jurissecours       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $jurissecours, $version ) {
 
-		$this->plugin_name = $plugin_name;
+		$this->jurissecours = $jurissecours;
 		$this->version = $version;
 
 	}
@@ -63,18 +63,18 @@ class Plugin_Name_Public {
 
 		wp_enqueue_style( 'dashicons' );
 
-		$my_page = get_option('plugin_name_page');
+		$my_page = get_option('jurissecours_page');
 		if($my_page && is_page($my_page)) {
 			if (!in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
 				$CSSfiles = scandir(dirname(__FILE__) . '/create-react-app-name/build/static/css/');
 			 	foreach($CSSfiles as $filename) {
 					if(strpos($filename,'.css')&&!strpos($filename,'.css.map')) {
-						wp_enqueue_style( 'plugin_name_react_css', plugin_dir_url( __FILE__ ) . 'create-react-app-name/build/static/css/' . $filename, array(), mt_rand(10,1000), 'all' );
+						wp_enqueue_style( 'jurissecours_react_css', plugin_dir_url( __FILE__ ) . 'create-react-app-name/build/static/css/' . $filename, array(), mt_rand(10,1000), 'all' );
 					}
 			 	}
 			}
 		} else {
-			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/plugin-name-public.css', array(), mt_rand(10,1000), 'all' );
+			wp_enqueue_style( $this->jurissecours, plugin_dir_url( __FILE__ ) . 'css/jurissecours-public.css', array(), mt_rand(10,1000), 'all' );
 		}
 
 	}
@@ -86,7 +86,7 @@ class Plugin_Name_Public {
 	 */
 	public function enqueue_scripts() {
 
-		$my_page = get_option('plugin_name_page');
+		$my_page = get_option('jurissecours_page');
 		if($my_page && is_page($my_page)) {
 			if (!in_array($_SERVER['REMOTE_ADDR'], array('127.0.0.1', '::1'))) {
 	    	// code for localhost here
@@ -103,16 +103,16 @@ class Plugin_Name_Public {
 			}
 		 	// DEV
 		 	// React dynamic loading
-		 	wp_enqueue_script('plugin_name_react', $react_js_to_load, '', mt_rand(10,1000), true);
-		 	// wp_register_script('plugin_name_react', $react_js_to_load, '', mt_rand(10,1000), true);
+		 	wp_enqueue_script('jurissecours_react', $react_js_to_load, '', mt_rand(10,1000), true);
+		 	// wp_register_script('jurissecours_react', $react_js_to_load, '', mt_rand(10,1000), true);
       //
-			// wp_localize_script('plugin_name_react', 'params', array(
+			// wp_localize_script('jurissecours_react', 'params', array(
 			//     'nonce' => wp_create_nonce('wp_rest'),
 			//     'nonce_verify' => wp_verify_nonce($_REQUEST['X-WP-Nonce'], 'wp_rest')
 			// ));
-			// wp_enqueue_script( 'plugin_name_react' );
+			// wp_enqueue_script( 'jurissecours_react' );
 		} else {
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/plugin-name-public.js', array( 'jquery' ), mt_rand(10,1000), false );
+			wp_enqueue_script( $this->jurissecours, plugin_dir_url( __FILE__ ) . 'js/jurissecours-public.js', array( 'jquery' ), mt_rand(10,1000), false );
 		}
 
 	}
@@ -122,9 +122,9 @@ class Plugin_Name_Public {
 	 *
 	 * @since    1.0.0
 	 */
-	public function plugin_name_cra_template( $template ) {
-		$my_page = get_option('plugin_name_page');
-		$file_name = 'plugin-name-page-template.php';
+	public function jurissecours_cra_template( $template ) {
+		$my_page = get_option('jurissecours_page');
+		$file_name = 'jurissecours-page-template.php';
 
     if ( $my_page && is_page( $my_page ) ) {
         if ( locate_template( $file_name ) ) {
